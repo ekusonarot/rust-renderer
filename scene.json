@@ -1,0 +1,33 @@
+{
+    "camera": {
+        "sampling": 4,
+        "position": [0.0, 0.0, 0,0],
+        "top": [0.0, 1.0, 0.0],
+        "forward": [-1.0, 0.0, 0.0],
+        "fov": 110.0,
+        "image_size": [320, 180]
+    },
+    "objectlist": [
+        {"name": "cube.obj",
+        "rotate": [180.0, 0.0, 0.0],
+        "scale": [1.0, 1.0, 1.0],
+        "translate": [-5.0, -2.0, 2.0]},
+        {"name": "cube_copy.obj",
+        "rotate": [180.0, 0.0, 0.0],
+        "scale": [5.0, 5.0, 5.0],
+        "translate": [-5.0, 0.0, -5.0]},
+        {"name": "cube_copy.obj",
+        "rotate": [180.0, 0.0, 0.0],
+        "scale": [5.0, 5.0, 5.0],
+        "translate": [-5.0, 0.0, 5.0]},
+        {"name": "cube_copy.obj",
+        "rotate": [180.0, 0.0, 0.0],
+        "scale": [5.0, 5.0, 5.0],
+        "translate": [-10.0, 0.0, 0.0]},
+        {"name": "cube1.obj",
+        "rotate": [180.0, 45.0, 45.0],
+        "scale": [2.0, 2.0, 2.0],
+        "translate": [-5.0, 0.0, 0.0]}
+    ]
+
+}
