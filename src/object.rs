@@ -5,6 +5,7 @@ use std::collections::HashMap;
 
 use crate::vector::{Vector3, Vector2};
 use crate::ray::Ray;
+use crate::color::Color;
 
 pub const MAX_RANGE: f32 = 10000.;
 
@@ -71,7 +72,7 @@ impl Plane {
             r.cross(&e1).inner(&ray.direction),
         );
         let t = vec/ray.direction.cross(&e2).inner(&e1);
-        if 0.001 < t.x && 0. <= t.y && 0. <= t.z && t.y + t.z <= 1. && t.x < MAX_RANGE {
+        if 0.0001 < t.x && 0. <= t.y && 0. <= t.z && t.y + t.z <= 1. && t.x < MAX_RANGE {
             Some(t)
         } else {
             None
@@ -86,6 +87,7 @@ pub struct Object {
     pub radius: f32,
     pub materials: Vec<tobj::Material>,
     pub image: HashMap<String, RgbImage>,
+    pub is_ec: bool,
 }
 impl Object {
     pub fn import(obj_file: &str, r: Vector3, s: Vector3, t: Vector3) -> Object {
@@ -102,6 +104,7 @@ impl Object {
         let mut max_radius: f32 = 0.;
         let mut planes = Vec::new();
         let mut image = HashMap::new();
+        let mut is_ec = false;
         for model in models.iter() {
             for i in 0..model.mesh.indices.len() / 3 {
                 let j = model.mesh.indices[3*i] as usize;
@@ -211,9 +214,11 @@ impl Object {
                     let t_image = ImageReader::open(map_pm).unwrap().decode().unwrap();
                     image.insert(String::from(map_pm), t_image.to_rgb8());
                 }
-                if let Some(map_ps) = material.unknown_param.get("map_Ps") {
-                    let t_image = ImageReader::open(map_ps).unwrap().decode().unwrap();
-                    image.insert(String::from(map_ps), t_image.to_rgb8());
+                if let Some(ec_string) = material.unknown_param.get("Ec") {
+                    let ec = Color::from_vector(&ec_string.split(" ").filter_map(|s| s.parse::<f32>().ok()).collect::<Vec<_>>());
+                    if (Color{r: 0., g:0., b:0.}) < ec {
+                        is_ec = true;
+                    }
                 }
             }
         }
@@ -223,6 +228,7 @@ impl Object {
             radius: max_radius,
             materials,
             image,
+            is_ec,
         }
     }
     fn intersection(&self, ray: &Ray) -> Option<(Vector3, usize)> {

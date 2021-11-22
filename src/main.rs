@@ -37,6 +37,8 @@ fn main() {
         }
     }
     let camera = &v["camera"];
+    let num_of_bounce = camera["num_of_bounce"].to_string().parse::<usize>().unwrap();
+    let num_of_diffuse = camera["num_of_diffuse"].to_string().parse::<usize>().unwrap();
     let sampling = camera["sampling"].to_string().parse::<usize>().unwrap();
     let position = Vector3::new(
         camera["position"][0].to_string().parse::<f32>().unwrap(),
@@ -58,5 +60,5 @@ fn main() {
     let right = top.cross(&forward);
     let camera = Camera::new(position, top, forward, right, fov, image_size);
     let scene = Scene::new(camera, objs);
-    scene.render(sampling);
+    scene.render(num_of_bounce, sampling, num_of_diffuse);
 }

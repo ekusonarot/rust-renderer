@@ -1,26 +1,28 @@
 {
     "camera": {
-        "sampling": 4,
+        "num_of_bounce": 4,
+        "num_of_diffuse": 1,
+        "sampling": 50,
         "position": [0.0, 0.0, 0,0],
         "top": [0.0, 1.0, 0.0],
         "forward": [-1.0, 0.0, 0.0],
         "fov": 110.0,
-        "image_size": [320, 180]
+        "image_size": [1280, 720]
     },
     "objectlist": [
         {"name": "cube.obj",
         "rotate": [180.0, 0.0, 0.0],
         "scale": [1.0, 1.0, 1.0],
         "translate": [-5.0, -2.0, 2.0]},
-        {"name": "cube_copy.obj",
+        {"name": "cube_te.obj",
         "rotate": [180.0, 0.0, 0.0],
         "scale": [5.0, 5.0, 5.0],
         "translate": [-5.0, 0.0, -5.0]},
-        {"name": "cube_copy.obj",
+        {"name": "cube_blue.obj",
         "rotate": [180.0, 0.0, 0.0],
         "scale": [5.0, 5.0, 5.0],
         "translate": [-5.0, 0.0, 5.0]},
-        {"name": "cube_copy.obj",
+        {"name": "cube_red.obj",
         "rotate": [180.0, 0.0, 0.0],
         "scale": [5.0, 5.0, 5.0],
         "translate": [-10.0, 0.0, 0.0]},

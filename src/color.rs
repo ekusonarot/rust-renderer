@@ -31,6 +31,14 @@ impl Color {
             b: v[2],
         }
     }
+    pub fn from_list(l: [f32; 3]) -> Color {
+        assert_eq!(l.len(),3);
+        Color {
+            r: l[0],
+            g: l[1],
+            b: l[2],
+        }
+    }
     pub fn reform(&self) -> Color {
         let r = if 255. < self.r {
             255.
@@ -54,6 +62,20 @@ impl Color {
             self.b
         };
         Color{r,g,b}
+    }
+    pub fn zeros() -> Color {
+        Color{
+            r: 0.,
+            g: 0.,
+            b: 0.,
+        }
+    }
+    pub fn ones() -> Color {
+        Color{
+            r: 1.,
+            g: 1.,
+            b: 1.,
+        }
     }
 }
 
